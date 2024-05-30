@@ -1,3 +1,3 @@
-python .\main.py G:\data.csv G:\resultspy.csv
+Запуск: `python .\main.py G:\data.csv G:\resultspy.csv`
 
 Первый аргумент - принимаемый файл от программы С++, второй аргумент - выходной файл, в котором находится результат работы python скрипта
