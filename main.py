@@ -49,12 +49,13 @@ def plot_profits(data, indices):
 
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: python analyze_data.py <input_file_path>")
+    if len(sys.argv) != 3:
+        print("Usage: python analyze_data.py <input_file_path> <output_file_path>")
         return
 
-    file_path = sys.argv[1]
-    data = read_csv(file_path)
+    input_file_path = sys.argv[1]
+    output_file_path = sys.argv[2]
+    data = read_csv(input_file_path)
 
     metrics = [calculate_metrics(row) for row in data]
     classifications = [classify_strategy(m[-1], m[0], m[1], m[3]) for m in metrics]
@@ -63,7 +64,8 @@ def main():
                                                 'Total Profit'])
     df_metrics['Classification'] = classifications
 
-    print(df_metrics)
+    df_metrics.to_csv(output_file_path, index=False)
+    print(f"Results saved to {output_file_path}")
 
     sample_indices = np.random.choice(len(data), 3, replace=False)
     plot_profits(data, sample_indices)
